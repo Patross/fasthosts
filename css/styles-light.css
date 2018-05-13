@@ -116,7 +116,7 @@ main section#welcome article.image img{
 #one-third-container{
     width: 95vw;
     height: 37.5vh;
-    background: #0099FF;
+    /* background: #0099FF; */
     margin-top: 5vh;
     margin-left: auto;
     margin-right: auto;
@@ -353,3 +353,11 @@ nav#main a:hover{
      width: 720px;
      height: 400px;
  }
+ #tldsearch{
+    text-align: center;
+    margin-top: 5vh;
+}
+#tldsearch input{
+    width: 60vw;
+    height: 5vh;
+}

@@ -1,32 +1,6 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='keywords' content='fasthosts, hosting, tld, domains, top level domains'>
-        <meta name="author" content="Patryk Tomaszewski">
-        <meta name='description' content='Fasthosts is the UK’s foremost web hosting company.
-        We have delivered market-leading online services to the home office and SME markets since 1999 
-        and have a successful track record in providing high value, award winning products'>
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-
-        <title>Fasthosts - World's leading domain provider.</title>
-
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="icon" href="img/favicon.ico">
-    </head>
-
-    <body>
-        <header>
-            <nav id="main">
-                <a href="index.html"><img src="img/logo.svg" alt="Fasthosts logo"></a>
-                <a href="index.html">Home</a>
-                <a href="domains.html">Top Level Domains</a>
-                <a href="interest.html">Register Your Interest</a>
-                <a href="about.html">About Fasthosts</a>
-                <a href="sitemap.html">Site Map</a>
-                <a href="#" id="themechange">Change Theme</a>
-            </nav>
-        </header>
+<?php
+include_once "includes/header.php";
+?>
 
         <main id="whatis-text">
             <h2>

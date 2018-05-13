@@ -1,38 +1,51 @@
-<!DOCTYPE HTML>
-<html lang="en">
-    <head>
-        <meta charset='UTF-8'>
-        <meta name='keywords' content='fasthosts, hosting, tld, domains, top level domains'>
-        <meta name="author" content="Patryk Tomaszewski">
-        <meta name='description' content='Fasthosts is the UK’s foremost web hosting company.
-        We have delivered market-leading online services to the home office and SME markets since 1999 
-        and have a successful track record in providing high value, award winning products'>
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-
-        <title>Fasthosts - World's leading domain provider.</title>
-
-        <link rel="stylesheet" href="css/styles.css">
-        <link rel="icon" href="img/favicon.ico">
-    </head>
-
-    <body>
-        <header>
-            <nav id="main">
-                <a href="index.html"><img src="img/logo.svg" alt="Fasthosts logo"></a>
-                <a href="index.html">Home</a>
-                <a href="domains.html">Top Level Domains</a>
-                <a href="interest.html">Register Your Interest</a>
-                <a href="about.html">About Fasthosts</a>
-                <a href="sitemap.html">Site Map</a>
-                <a href="#" id="themechange">Change Theme</a>
-            </nav>
-        </header>
+<?php
+include_once "includes/header.php";
+?>
 
         <main>
             <section class="margin" id="whatis">
-                <a href="whatis.html">What is a Top Level Domain?</a>
+                <a href="whatis.php">What is a Top Level Domain?</a>
             </section>
-            <section id="one-third-container">
+
+            <form action="includes/tldsearch.php" method="post" id="tldsearch">
+                <input type="text" name="domain" placeholder=".com, .net, .info">
+                <input type="submit" name="submit" hidden>
+            </form>
+
+            <section id ='one-third-container'>
+            <?php
+            require_once 'includes/classes/tld.php';
+
+
+            if(isset($_SESSION['domains']) && !empty($_SESSION['domains']))
+            {
+
+                $tld = new TLD();
+                $tld->SetSuffix($_SESSION['domains']['suffix']);
+                $tld->SetStatus($_SESSION['domains']['status']);
+                $tld->SetPrice($_SESSION['domains']['price']);
+
+            echo '<article class="one-third one-third-noscroll">
+            <article class="title">
+                <h3>';
+                echo $tld->suffix;
+                
+                echo ' DEAL</h3>
+            </article>
+            <article class="image">
+                <img src="img/computer.jpg" src="computer">
+            </article>
+            <article class="content">';
+                echo $tld->status;
+            echo'</article>
+            <div class="center-button">
+                <button class="button-buy">Buy Now! '; echo $tld->price ; echo'</button>
+            </div>
+        </article>';
+            }
+            ?>
+            </section>
+            <!-- <section id="one-third-container">
 
                 <article class="one-third one-third-noscroll">
                     <article class="title">
@@ -183,7 +196,7 @@
                         </div>
                     </article>
 
-            </section>
+            </section> -->
         </main>
 
         <!--START FOOTER  -->
