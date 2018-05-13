@@ -1,7 +1,5 @@
 <?php
-$servername = "patrossdev.ddns.net";
-$username = "Patross";
-$password = "P47r0551233";
+
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=fasthostsPatross", $username, $password);
