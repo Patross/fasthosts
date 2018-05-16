@@ -1,10 +1,10 @@
-let fullName = document.getElementById("fullName");
+let firstName = document.getElementById("firstName");
 let email = document.getElementById("email");
 let domain = document.getElementById("domain");
 let submit = document.getElementById("submit");
 
-fullName.addEventListener("blur",function(){
-    validate(fullName);
+firstName.addEventListener("blur",function(){
+    validate(firstName);
 })
 
 email.addEventListener("blur",function(){
@@ -16,7 +16,7 @@ domain.addEventListener("blur",function(){
 })
 
 submit.addEventListener("click",function(){ //checks if everything is valid once again if yes the proceeds.
-    validate(fullName);
+    validate(firstName);
     !valid?event.preventDefault():null; 
     validate(email);
     !valid?event.preventDefault():null;

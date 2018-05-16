@@ -1,19 +1,33 @@
-<?php
-include_once "includes/header.php";
+<?php 
+    include_once "includes/header.php";
 ?>
 
         <main>
-        <a href="editrequest.php">Edit your request</a>
-
-            <form action="includes/interest.inc.php" method="post" id="domainsearch">
-                <input id="firstName" name="firstName" type="text" placeholder="first name"><br><br>
-                <input type="text" name="lastName" placeholder="last name"><br><br>
-                <input id="email" name="email" type="text" placeholder="Email"><br><br>
-                <input id="domain" name="domain" type="text" placeholder="Name of the domain you wish to acquire"><br><br>
-                <input type="number" name="telephone"><br><br>
-                <input id="submit" type="submit" name="submit" value="Search" class="button-medium button-buy">
-            </form>
+         <form action="includes/editrequest.inc.php" method="post" id="domainsearch">
+            <input type="text" name="email" placeholder="email">
+            <input type="submit" name="submit">
+         </form>
         </main>
+
+
+        <?php
+            $domains = $_SESSION['requests'];
+
+            if (isset($domains) && !empty($domains)) {
+                
+                // print_r($domains)
+
+                
+
+
+                /*
+                MAKE EACH ROW A LINK AND ATTACH AN ID TO IT AND WHEN THE USER
+                CLCIKS ON THE ID, GRAB IT AND THEN PROCEED TO AN EDITING SCREEN 
+                WHERE THE USER CANCREDIT THEIR REQUEST
+                */
+            }
+        ?>
+
 
         <!--START FOOTER  -->
         <footer>

@@ -25,7 +25,7 @@ session_start();
                 <a href="index.php"><img src="img/logo.svg" alt="Fasthosts logo"></a>
                 <a href="index.php">Home</a>
                 <a href="domains.php">Top Level Domains</a>
-                <a href="interest.php">Register Your Interest</a>
+                <a href="interest.php?mode=new">Register Your Interest</a>
                 <a href="about.php">About Fasthosts</a>
                 <a href="sitemap.php">Site Map</a>
                 <a href="#" id="themechange">Change Theme</a>

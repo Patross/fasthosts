@@ -1,4 +1,3 @@
-'use strict';
 let changetheme = document.getElementById("themechange");
 changetheme.addEventListener("click",function(){
     event.preventDefault();
