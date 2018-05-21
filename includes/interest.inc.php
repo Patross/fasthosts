@@ -1,5 +1,4 @@
 <?php
-require_once "dbh.inc.php";
 
 if (isset($_POST["submit"])) {
     if (isset($_POST["firstName"]) && !empty($_POST["firstName"]) &&
@@ -20,14 +19,15 @@ if (isset($_POST["submit"])) {
             strlen($email) >5 &&
             strlen($firstName) >3 &&
             strlen($telephone) >10) {
+                include_once "dbh.inc.php";
 
             if ($_GET['mode'] == "new") {
-                $query = $conn->query("insert into fasthosts.requests(`email_address`,`domain`,`telephone`,`first_name`,`last_name`,`request_date`) values('$email','$domain','$telephone','$firstName','$lastName','$date')");
+                global $conn;
+                $conn->query("insert into fasthosts.requests(`email_address`,`telephone`,`first_name`,`last_name`,`request_date`,`domain_id`) values('$email','$domain','$telephone','$firstName','$lastName','$date','$domainId')");
             } else {
-                 $query = $conn->query("update fasthosts.requests
-                  set `email_address`='$email', `domain`='$domain', `telephone`='$telephone', `first_name`='$firstName', `last_name`='$lastName', `request_date`='$date' where `email_address`='$email';");
+               global $conn;
+               $conn->query("update fasthosts.requests set `email_address`='$email', `telephone`='$telephone', `first_name`='$firstName', `last_name`='$lastName', `request_date`='$date' where `email_address`='$email';");
             }
-        }
-        
+        }       
     }
 }

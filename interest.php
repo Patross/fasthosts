@@ -17,7 +17,12 @@ include_once "includes/header.php";
                 <input id="firstName" name="firstName" type="text" placeholder="first name"><br><br>
                 <input type="text" name="lastName" placeholder="last name"><br><br>
                 <input id="email" name="email" type="text" placeholder="Email"><br><br>
-                <input id="domain" name="domain" type="text" placeholder="Name of the domain you wish to acquire"><br><br>
+                <select name="domain" id="">
+                    <option value="COM">.COM</option>
+                    <option value="NET">.NET</option>
+                    <option value="ORG">.ORG</option>
+                    <option value="TECH">.TECH</option>
+                </select><br><br>
                 <input type="number" name="telephone"><br><br>
                 <input id="submit" type="submit" name="submit" value="Search" class="button-medium button-buy">
             </form>
