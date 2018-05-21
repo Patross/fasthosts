@@ -5,29 +5,10 @@
         <main>
          <form action="includes/editrequest.inc.php" method="post" id="domainsearch">
             <input type="text" name="email" placeholder="email">
+            <input type="text" name="domain" placeholder="domain">
             <input type="submit" name="submit">
          </form>
         </main>
-
-
-        <?php
-            $domains = $_SESSION['requests'];
-
-            if (isset($domains) && !empty($domains)) {
-                
-                // print_r($domains)
-
-                
-
-
-                /*
-                MAKE EACH ROW A LINK AND ATTACH AN ID TO IT AND WHEN THE USER
-                CLCIKS ON THE ID, GRAB IT AND THEN PROCEED TO AN EDITING SCREEN 
-                WHERE THE USER CANCREDIT THEIR REQUEST
-                */
-            }
-        ?>
-
 
         <!--START FOOTER  -->
         <footer>

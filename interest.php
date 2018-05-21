@@ -5,7 +5,15 @@ include_once "includes/header.php";
         <main>
         <a href="editrequest.php">Edit your request</a>
 
-            <form action="includes/interest.inc.php" method="post" id="domainsearch">
+            <?php if($_GET['mode']=='new')
+                {
+                    echo '<form action="includes/interest.inc.php?mode=new" method="post" id="domainsearch">';
+                }
+                else if($_GET['mode']=='alter')
+                {
+                    echo '<form action="includes/interest.inc.php?mode=alter" method="post" id="domainsearch">';
+                }
+            ?>
                 <input id="firstName" name="firstName" type="text" placeholder="first name"><br><br>
                 <input type="text" name="lastName" placeholder="last name"><br><br>
                 <input id="email" name="email" type="text" placeholder="Email"><br><br>
