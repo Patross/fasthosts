@@ -1,4 +1,5 @@
 <?php
+include_once "dbh.inc.php";
 
 if (isset($_POST["submit"])) {
     if (isset($_POST["firstName"]) && !empty($_POST["firstName"]) &&
@@ -19,14 +20,16 @@ if (isset($_POST["submit"])) {
             strlen($email) >5 &&
             strlen($firstName) >3 &&
             strlen($telephone) >10) {
-                include_once "dbh.inc.php";
+
+                $query = $conn->query("select id from fasthosts.domains where `suffix`='$domain';");
+                $result = $query->fetch(PDO::FETCH_ASSOC);
+                $domainId = $result['id'];
 
             if ($_GET['mode'] == "new") {
-                global $conn;
-                $conn->query("insert into fasthosts.requests(`email_address`,`telephone`,`first_name`,`last_name`,`request_date`,`domain_id`) values('$email','$domain','$telephone','$firstName','$lastName','$date','$domainId')");
+                
+                $conn->query("insert into fasthosts.requests(`email_address`,`telephone`,`first_name`,`last_name`,`request_date`,`domain_id`) values('$email','$telephone','$firstName','$lastName','$date','$domainId');");
             } else {
-               global $conn;
-               $conn->query("update fasthosts.requests set `email_address`='$email', `telephone`='$telephone', `first_name`='$firstName', `last_name`='$lastName', `request_date`='$date' where `email_address`='$email';");
+                $conn->query("update fasthosts.requests set `email_address`='$email', `telephone`='$telephone', `first_name`='$firstName', `last_name`='$lastName', `request_date`='$date',`domain_id`='$domainId' where `email_address`='$email';");
             }
         }       
     }
