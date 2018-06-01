@@ -8,7 +8,7 @@ include_once "includes/header.php";
             </section>
 
             <form action="includes/tldsearch.php" method="post" id="tldsearch">
-                <input type="text" name="domain" placeholder=".com, .net, .info">
+                <input type="text" name="domain" placeholder=".com, .net, .info" autocomplete="off">
                 <input type="submit" name="submit" hidden>
             </form>
 

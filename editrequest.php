@@ -4,7 +4,7 @@
 
         <main>
          <form action="includes/editrequest.inc.php" method="post" id="domainsearch">
-            <input type="text" name="email" placeholder="email">
+            <input type="text" name="email" placeholder="email" autocomplete="off">
             <input type="submit" name="submit">
          </form>
         </main>

@@ -27,10 +27,32 @@ if (isset($_POST["submit"])) {
 
             if ($_GET['mode'] == "new") {
                 
-                $conn->query("insert into fasthosts.requests(`email_address`,`telephone`,`first_name`,`last_name`,`request_date`,`domain_id`) values('$email','$telephone','$firstName','$lastName','$date','$domainId');");
+                $query = $conn->prepare("insert into fasthosts.requests(:email_address,:telephone,:first_name,:last_name,:request_date,:domain_id)
+                             values(?,?,?,?,NOW(),?);");
+                $query->execute(array(
+                    ':email_address' => $email,
+                    ':telephone' =>$telephone,
+                    ':first_name' => $firstName,
+                    ':last_name' => $lastName,
+                    ':request_date' => date("Y-m-d"),
+                    ':domain_id' => $domainId
+
+                ));
+
             } else {
-                $conn->query("update fasthosts.requests set `email_address`='$email', `telephone`='$telephone', `first_name`='$firstName', `last_name`='$lastName', `request_date`='$date',`domain_id`='$domainId' where `email_address`='$email';");
+                $query = $conn->prepare("update fasthosts.requests set
+                 `email_address`=':email_address', `telephone`=:telephone, `first_name`=:first_name,
+                  `last_name`=:last_name, `request_date`=:request_date,`domain_id`=:domain_id where `email_address`=:email_address;");
             }
+            $query->execute(array(
+                ':email_address' => $email,
+                ':telephone' =>$telephone,
+                ':first_name' => $firstName,
+                ':last_name' => $lastName,
+                ':request_date' => date("Y-m-d"),
+                ':domain_id' => $domainId
+
+            ));
         }       
     }
 }
