@@ -5,27 +5,96 @@ include_once "includes/header.php";
         <main>
         <a href="editrequest.php">Edit your request</a>
 
-            <?php if($_GET['mode']=='new')
+            <?php if(isset($_GET['mode']) && $_GET['mode']=='new')
                 {
                     echo '<form action="includes/interest.inc.php?mode=new" method="post" id="domainsearch">';
                 }
-                else if($_GET['mode']=='alter')
+                else if(isset($_GET['mode']) && $_GET['mode']=='alter')
                 {
                     echo '<form action="includes/interest.inc.php?mode=alter" method="post" id="domainsearch">';
                 }
             ?>
-                <input id="firstName" name="firstName" type="text" placeholder="first name" autocomplete="off"><br><br>
-                <input type="text" name="lastName" placeholder="last name" autocomplete="off"><br><br>
-                <input id="email" name="email" type="text" placeholder="Email" autocomplete="off"><br><br>
+                <input
+                <?php 
+                    if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                        echo "value=".$_SESSION['emailtoalter']['first_name'];
+                    }
+                ?>
+                id="firstName" name="firstName" type="text" placeholder="first name" autocomplete="off"><br><br>
+
+
+                <input
+                <?php 
+                    if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                        echo "value=".$_SESSION['emailtoalter']['last_name'];
+                    }
+                ?>
+                type="text" name="lastName" placeholder="last name" autocomplete="off"><br><br>
+                <input
+                <?php 
+                    if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                        echo "value=".$_SESSION['emailtoalter']['email_address'];
+                    }
+                ?>
+                 id="email" name="email" type="text" placeholder="Email" autocomplete="off"><br><br>
                 <select name="domain" id="">
-                    <option value=".COM">.COM</option>
-                    <option value=".NET">.NET</option>
-                    <option value=".ORG">.ORG</option>
-                    <option value=".TECH">.TECH</option>
+                    <option
+                    <?php 
+                        if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                            if($_SESSION['emailtoalter']['domain_id']==2)
+                            {
+                                echo "selected=".$_SESSION['emailtoalter']['domain_id'];
+                            }
+                        }
+                    ?>
+                    value=".COM">.COM
+                    </option>
+
+                    <option                  
+                    <?php 
+                        if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                            if($_SESSION['emailtoalter']['domain_id']==3)
+                            {
+                                echo "selected=".$_SESSION['emailtoalter']['domain_id'];
+                            }
+                        }
+                    ?>
+                    value=".NET">.NET</option>
+                    <option                 
+                    <?php 
+                        if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                            if($_SESSION['emailtoalter']['domain_id']==4)
+                            {
+                                echo "selected=".$_SESSION['emailtoalter']['domain_id'];
+                            }
+                        }
+                    ?> 
+                    value=".ORG">.ORG</option>
+                    <option                     
+                    <?php 
+                        if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                            if($_SESSION['emailtoalter']['domain_id']==5)
+                            {
+                                echo "selected=".$_SESSION['emailtoalter']['domain_id'];
+                            }
+                        }
+                    ?> 
+                    value=".TECH">.TECH</option>
                 </select><br><br>
-                <input type="number" name="telephone" autocomplete="off"><br><br>
-                <input id="submit" type="submit" name="submit" value="Search" class="button-medium button-buy">
+                <input               
+                <?php 
+                    if(isset($_SESSION['emailtoalter'])&&!empty($_SESSION['emailtoalter'])){
+                        echo "value=".$_SESSION['emailtoalter']['telephone'];
+                    }
+                ?>
+                 type="number" name="telephone" autocomplete="off"><br><br>
+                <input id="submit" type="submit" name="submit" value="Submit" class="button-medium button-buy">
             </form>
+            <?php
+            if(isset($_GET['a']) && $_GET['a'] == 'error' ){
+                echo "YOU MADE AN ERROR!!!!!!!!!!!!!!!!!!!!!!! MAKE SURE YOU PUT ALL THE DATA IN!!!!!!!";
+            }
+            ?>
         </main>
 
         <!--START FOOTER  -->

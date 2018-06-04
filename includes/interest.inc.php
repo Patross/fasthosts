@@ -1,5 +1,6 @@
 <?php
 include_once "dbh.inc.php";
+session_start();
 
 if (isset($_POST["submit"])) {
     if (isset($_POST["firstName"]) && !empty($_POST["firstName"]) &&
@@ -15,6 +16,8 @@ if (isset($_POST["submit"])) {
         $telephone = $_POST["telephone"];
         $date = date("Y-m-d");
 
+        
+
         if (strlen($firstName) >0 &&
             strlen($firstName) >0 &&
             strlen($email) >5 &&
@@ -27,8 +30,8 @@ if (isset($_POST["submit"])) {
 
             if ($_GET['mode'] == "new") {
                 
-                $query = $conn->prepare("insert into fasthosts.requests(:email_address,:telephone,:first_name,:last_name,:request_date,:domain_id)
-                             values(?,?,?,?,NOW(),?);");
+                $query = $conn->prepare("insert into fasthosts.requests(email_address,telephone,first_name,last_name,request_date,domain_id)
+                             values(:email_address,:telephone,:first_name,:last_name,:request_date,:domain_id);");
                 $query->execute(array(
                     ':email_address' => $email,
                     ':telephone' =>$telephone,
@@ -38,21 +41,25 @@ if (isset($_POST["submit"])) {
                     ':domain_id' => $domainId
 
                 ));
-
+                header("Location: ../interest.php");
             } else {
                 $query = $conn->prepare("update fasthosts.requests set
-                 `email_address`=':email_address', `telephone`=:telephone, `first_name`=:first_name,
-                  `last_name`=:last_name, `request_date`=:request_date,`domain_id`=:domain_id where `email_address`=:email_address;");
-            }
-            $query->execute(array(
+                 `email_address`=:email_address, `telephone`=:telephone, `first_name`=:first_name,
+                  `last_name`=:last_name, `request_date`=:request_date,`domain_id`=:domain_id where `email_address`=:emailold;");
+                
+                $query->execute(array(
                 ':email_address' => $email,
                 ':telephone' =>$telephone,
                 ':first_name' => $firstName,
                 ':last_name' => $lastName,
                 ':request_date' => date("Y-m-d"),
-                ':domain_id' => $domainId
-
+                ':domain_id' => $domainId,
+                ':emailold' => $_SESSION['emailtoalter']['email_address']
+                 
             ));
+            
+            }
+           header("Location: ../interest.php");
         }       
     }
 }
